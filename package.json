@@ -1,0 +1,24 @@
+{
+  "name": "finaly-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "LivingCreature.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samvelmovsisyanm/finaly-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samvelmovsisyanm/finaly-project/issues"
+  },
+  "homepage": "https://github.com/samvelmovsisyanm/finaly-project#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "soket.io": "^1.0.0"
+  }
+}
