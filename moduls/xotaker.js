@@ -1,6 +1,7 @@
-class Xotaker extends LivingCreature {
+var LivingCreature = require("./LivingCreature");
+module.exports = class Xotaker extends LivingCreature {
     constructor(x, y, index) {
-        super(x,y,index);
+        super(x, y, index);
         this.energy = 8;
         this.directions = [];
     }
@@ -19,7 +20,10 @@ class Xotaker extends LivingCreature {
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character)
-        
+
+    }
+    Random =function(arr){
+        return arr [Math.floor(Math.random()*arr.length)];
     }
     move() {
 
@@ -35,7 +39,7 @@ class Xotaker extends LivingCreature {
         }
     }
     eat() {
-        var grass = random(this.chooseCell(1))
+        var grass = Random(this.chooseCell(1))
         if (grass) {
             var newx = grass[0];
             var newy = grass[1];
@@ -53,7 +57,7 @@ class Xotaker extends LivingCreature {
         }
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (this.energy >= 10 && newCell) {
             var newxotaker = new Xotaker(newCell[0], newCell[1], this.index);
             xotakerArr.push(newxotaker);

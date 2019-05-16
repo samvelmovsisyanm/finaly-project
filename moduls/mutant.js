@@ -1,6 +1,7 @@
-class Mutant extends LivingCreature  {
+var LivingCreature = require("./LivingCreature");
+module.exports = class Mutant extends LivingCreature {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.index = 5;
         this.sov = 8;
         this.directions = [];
@@ -32,14 +33,16 @@ class Mutant extends LivingCreature  {
             n++;
         }
     }
-
+    Random =function(arr){
+        return arr [Math.floor(Math.random()*arr.length)];
+    }
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character)
     }
     move() {
 
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (newCell) {
             this.sov--;
             var newx = newCell[0];
@@ -52,15 +55,15 @@ class Mutant extends LivingCreature  {
     }
     eat() {
         var eatArr = [];
-        var newCell = random(this.chooseCell(1));
-        var newCell1 = random(this.chooseCell(2));
-        var newCell2 = random(this.chooseCell(3));
-        var newCell3 = random(this.chooseCell(4));
+        var newCell = Random(this.chooseCell(1));
+        var newCell1 = Random(this.chooseCell(2));
+        var newCell2 = Random(this.chooseCell(3));
+        var newCell3 = Random(this.chooseCell(4));
         eatArr.push(newCell);
         eatArr.push(newCell1);
         eatArr.push(newCell2);
         eatArr.push(newCell3);
-        var mard = random(eatArr);
+        var mard = Random(eatArr);
 
         if (mard) {
             var newx = mard[0];
@@ -105,7 +108,7 @@ class Mutant extends LivingCreature  {
         }
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
 
         if (this.sov >= 12 && newCell) {
             var newmutant = new Mutant(newCell[0], newCell[1], this.index);

@@ -1,6 +1,7 @@
-class Gishatich extends LivingCreature {
+var LivingCreature = require("./LivingCreature");
+module.exports = class Gishatich extends LivingCreature {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.index = 3;
         this.multiply = 8;
     }
@@ -37,9 +38,12 @@ class Gishatich extends LivingCreature {
         this.getNewCoordinates();
         return super.chooseCell(character)
     }
+    Random =function(arr){
+        return arr [Math.floor(Math.random()*arr.length)];
+    }
     move() {
 
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (newCell) {
             this.multiply--;
             var newx = newCell[0];
@@ -51,7 +55,7 @@ class Gishatich extends LivingCreature {
         }
     }
     eat() {
-        var gishat = random(this.chooseCell(2))
+        var gishat = Random(this.chooseCell(2))
         if (gishat) {
             var newx = gishat[0];
             var newy = gishat[1];
@@ -69,7 +73,7 @@ class Gishatich extends LivingCreature {
         }
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (this.multiply >= 12 && newCell) {
             var newgishatich = new Gishatich(newCell[0], newCell[1], this.index);
             gishatichArr.push(newgishatich);

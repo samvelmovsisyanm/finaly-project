@@ -1,6 +1,7 @@
-class Mard extends LivingCreature {
+var LivingCreature = require("./LivingCreature");
+module.exports = class Mard extends LivingCreature {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.index = 4;
         this.sov = 3;
     }
@@ -62,9 +63,12 @@ class Mard extends LivingCreature {
         this.getNewCoordinates();
         return super.chooseCell(character)
     }
+    Random =function(arr){
+        return arr [Math.floor(Math.random()*arr.length)];
+    }
     move() {
 
-        var newCell = random(this.chooseCell(1));
+        var newCell = Random(this.chooseCell(1));
         if (newCell) {
             this.sov--;
             var newx = newCell[0];
@@ -77,11 +81,11 @@ class Mard extends LivingCreature {
     }
     eat() {
         var eatArr = [];
-        var newCell = random(this.chooseCell(2));
-        var newCell1 = random(this.chooseCell(3));
+        var newCell = Random(this.chooseCell(2));
+        var newCell1 = Random(this.chooseCell(3));
         eatArr.push(newCell);
         eatArr.push(newCell1);
-        var mard = random(eatArr);
+        var mard = Random(eatArr);
 
         if (mard) {
             var newx = mard[0];
@@ -111,7 +115,7 @@ class Mard extends LivingCreature {
         }
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
 
         if (this.sov >= 7 && newCell) {
             var newmard = new Mard(newCell[0], newCell[1], this.index);
