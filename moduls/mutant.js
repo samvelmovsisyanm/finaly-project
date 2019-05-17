@@ -33,9 +33,7 @@ module.exports = class Mutant extends LivingCreature {
             n++;
         }
     }
-    Random =function(arr){
-        return arr [Math.floor(Math.random()*arr.length)];
-    }
+   
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character)

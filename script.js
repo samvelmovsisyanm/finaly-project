@@ -1,8 +1,8 @@
-var Side = 20;
-var soket = io();
+var side = 20;
+var socket = io();
 function setup() {
     frameRate(5);
-    createCanvas(20 * side, 20* side);
+    createCanvas(20 * side, 20 * side);
     background('grey');
 }
 function drawMatrix(matrix) {

@@ -2,49 +2,55 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var fs = require('fs');
+// var fs = require('fs');
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
-   res.redirect('index.html');
+    res.redirect('index.html');
 });
-server.listen(3000,function(){
+server.listen(3000, function () {
     console.log("port is runing")
 });
 
 var Grass = require("./moduls/grass.js");
-var xotaker = require("./moduls/xotaker.js");
-var gishatich = require("./moduls/gishatich.js");
-var mutant = require("./moduls/mutant.js");
-var mard = require("./moduls/mard.js");
+var Xotaker = require("./moduls/xotaker.js");
+var Gishatich = require("./moduls/gishatich.js");
+var Mutant = require("./moduls/mutant.js");
+var Mard = require("./moduls/mard.js");
 
- grassArr = [];
- xotakerArr = [];
- gishatichArr = [];
- mardArr = [];
- mutantArr = [];
+grassArr = [];
+xotakerArr = [];
+gishatichArr = [];
+mardArr = [];
+mutantArr = [];
 
- var w = 50 ;
- var h = 50;
- function genMatrix(w,h){
-     var matrix=[];
-     for(var y=0 ;y<h; y++){
-         matrix[y]=[];
-         for(var x=0; x<w; x++){
-             var r =Math.floor(Math.random()*75);
-             if(r<20)r=0;
-             else if(r<40)r=1;
-             else if(r<42)r=2;
-             else if(r<75)r=3;
-             else if(r<70)r=4;
-             else if(r<80)r=5;
-             matrix[y][x]=r;
-         }
-     }
-     return matrix
- }
- matrix= genMatrix(w,h);
- for (var y = 0; y < matrix.length; y++) {
+var w = 50;
+var h = 50;
+function genMatrix(w, h) {
+    var matrix = [];
+    for (var y = 0; y < h; y++) {
+        matrix[y] = [];
+        for (var x = 0; x < w; x++) {
+            var r = Math.floor(Math.random() * 75);
+            if (r < 20) r = 0;
+            else if (r < 40) r = 1;
+            else if (r < 42) r = 2;
+            else if (r < 75) r = 3;
+            else if (r < 70) r = 4;
+            else if (r < 100) r = 5;
+            matrix[y][x] = r;
+        }
+    }
+    return matrix
+}
+
+Random = function(arr){
+    return arr[Math.floor(Math.random * arr.length)];
+}
+matrix = genMatrix(w, h);
+
+
+for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
         if (matrix[y][x] == 1) {
             var gr = new Grass(x, y, 1);
@@ -68,8 +74,9 @@ var mard = require("./moduls/mard.js");
         }
     }
 }
-function drawserever(){
-    for (var i in grassArr){
+
+function drawserever() {
+    for (var i in grassArr) {
         grassArr[i].mul();
     }
     for (var i in xotakerArr) {
@@ -96,5 +103,7 @@ function drawserever(){
         mutantArr[i].mul();
         mutantArr[i].die();
     }
-    io.sockets.emit("matrix",matrix);
+    io.sockets.emit("matrix", matrix);
 }
+
+setInterval(drawserever,2000);

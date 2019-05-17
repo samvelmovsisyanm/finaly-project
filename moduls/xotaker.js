@@ -22,12 +22,10 @@ module.exports = class Xotaker extends LivingCreature {
         return super.chooseCell(character)
 
     }
-    Random =function(arr){
-        return arr [Math.floor(Math.random()*arr.length)];
-    }
+ 
     move() {
 
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (newCell) {
             this.energy--;
             var newx = newCell[0];

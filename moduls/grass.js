@@ -1,8 +1,6 @@
 var LivingCreature = require("./LivingCreature");
 module.exports = class Grass extends LivingCreature {
-    Random =function(arr){
-        return arr [Math.floor(Math.random()*arr.length)];
-    }
+   
     mul() {
         this.multiply++;
         var newCell = Random(this.chooseCell(0));

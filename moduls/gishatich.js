@@ -38,9 +38,7 @@ module.exports = class Gishatich extends LivingCreature {
         this.getNewCoordinates();
         return super.chooseCell(character)
     }
-    Random =function(arr){
-        return arr [Math.floor(Math.random()*arr.length)];
-    }
+  
     move() {
 
         var newCell = Random(this.chooseCell(0));
